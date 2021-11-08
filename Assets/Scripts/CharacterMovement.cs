@@ -16,12 +16,20 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerChar.GetComponent<Animator>().Play("Shield");
+        }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
-            playerChar.GetComponent<Animator>().Play("Attack1");
+            playerChar.GetComponent<Animator>().Play("Dodge Left");
         }
-  
-        
     }
 }
 
