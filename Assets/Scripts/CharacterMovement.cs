@@ -18,20 +18,29 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("mouse");
             playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("space");
             playerChar.GetComponent<Animator>().Play("Shield");
         }
 
         if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("A");
+        { 
             playerChar.GetComponent<Animator>().Play("Dodge Left");
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            playerChar.GetComponent<Animator>().Play("Dodge Right");
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerChar.GetComponent<Animator>().Play("Block");
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            playerChar.GetComponent<Animator>().Play("Left Top Down");
         }
     }
 }
