@@ -54,7 +54,7 @@ public class EnemyAi : MonoBehaviour
             case State.Attacking:
                 timeToAction = Time.time + cooldown;
                 PlayAttackAnim();
-                state = State.Idle;
+                state = State.Idle; 
                 break;
         }
     }

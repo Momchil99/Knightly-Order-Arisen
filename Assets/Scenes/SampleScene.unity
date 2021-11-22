@@ -1195,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: c867fedfe99dbe6459fc09ab73d3199d, type: 2}
     - target: {fileID: 5866666021909216657, guid: 61edeebbdd7059241b16aa5fd6f91ad0, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6280950661766918508, guid: 61edeebbdd7059241b16aa5fd6f91ad0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1502,7 +1502,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: c25b853bcf5bf6e46b181a4f88d53e55, type: 2}
     - target: {fileID: 5866666021909216657, guid: ff945521566d1484c91035fa17514db3, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff945521566d1484c91035fa17514db3, type: 3}
@@ -2310,6 +2310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerChar: {fileID: 1647963767}
+  initialPositionX: 0
+  initialPositionY: 0
+  initialPositionZ: 0
 --- !u!1001 &1720030829
 PrefabInstance:
   m_ObjectHideFlags: 0
