@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyAi : MonoBehaviour
 {
-    public AnimationClip[] attackAnims;
+  
     private Animator animator;
+
+    //private int[] triggerSelector;
+    private string[] triggerSelector = new string[3];
     
     public GameObject enemy;
 
@@ -25,18 +28,24 @@ public class EnemyAi : MonoBehaviour
     {
         cooldown = 2f;
         animator = GetComponent<Animator>();
-        attackAnims = animator.runtimeAnimatorController.animationClips;
         timeToAction = Time.time + cooldown;
         state = State.Idle;
+
+        triggerSelector[0] = "JumpAtk";
+        triggerSelector[1] = "Punch";
+        triggerSelector[2] = "Swipe";
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         switch (state)
         {
             case State.Idle:
-                if(timeToAction < Time.time)
+                if (timeToAction < Time.time)
                 {
                     state = State.Attacking;
                 }
@@ -44,11 +53,30 @@ public class EnemyAi : MonoBehaviour
 
             case State.Attacking:
                 timeToAction = Time.time + cooldown;
-                var randInd = Random.Range(0, attackAnims.Length);
-                var randClip = attackAnims[randInd];
-                animator.Play(randClip.name);
+                PlayAttackAnim();
                 state = State.Idle;
                 break;
         }
     }
+
+   void PlayAttackAnim()
+    {
+        int randInd = Random.Range(0, triggerSelector.Length);
+        animator.SetTrigger(triggerSelector[randInd]);
+        if (randInd == 0)
+        {
+            cooldown = 11;
+        }
+        if (randInd == 1)
+        {
+            cooldown = 4;
+        }
+        if (randInd == 2)
+        {
+            cooldown = 6;
+        }
+    }
+    
+
+   
 }
