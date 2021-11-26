@@ -263,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61edeebbdd7059241b16aa5fd6f91ad0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61edeebbdd7059241b16aa5fd6f91ad0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2313,6 +2313,9 @@ MonoBehaviour:
   initialPositionX: 0
   initialPositionY: 0
   initialPositionZ: 0
+  initialRotX: 0
+  initialRotY: 0
+  initialRotZ: 0
 --- !u!1001 &1720030829
 PrefabInstance:
   m_ObjectHideFlags: 0

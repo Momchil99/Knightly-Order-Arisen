@@ -15,6 +15,9 @@ public class EnemyAi : MonoBehaviour
     private float timeToAction;
     private float cooldown;
 
+    Vector3 startPosition;
+    private Quaternion startRotation;
+
     private enum State
     {
         Idle,
@@ -35,6 +38,9 @@ public class EnemyAi : MonoBehaviour
         triggerSelector[1] = "Punch";
         triggerSelector[2] = "Swipe";
 
+        startPosition = enemy.transform.position;
+        startRotation = enemy.transform.rotation;
+
     }
 
     // Update is called once per frame
@@ -53,13 +59,13 @@ public class EnemyAi : MonoBehaviour
 
             case State.Attacking:
                 timeToAction = Time.time + cooldown;
-                PlayAttackAnim();
+                StartCoroutine(PlayAttackAnim());
                 state = State.Idle; 
                 break;
         }
     }
 
-   void PlayAttackAnim()
+   IEnumerator PlayAttackAnim()
     {
         int randInd = Random.Range(0, triggerSelector.Length);
         animator.SetTrigger(triggerSelector[randInd]);
@@ -75,6 +81,9 @@ public class EnemyAi : MonoBehaviour
         {
             cooldown = 6;
         }
+        yield return new WaitForSeconds(triggerSelector.Length);
+        enemy.transform.position = startPosition;
+        enemy.transform.rotation = startRotation;
     }
     
 
