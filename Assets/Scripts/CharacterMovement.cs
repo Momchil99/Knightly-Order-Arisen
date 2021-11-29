@@ -29,6 +29,8 @@ public float myDamageTaken;
         Parrying
     }
 
+    private State state;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public float myDamageTaken;
         myHealth = 100f;
         myDamageDealt = 10f;
 
-State = State.Idle;
+state = State.Idle;
         // get current animation length (for later)
       /*  animator = gameObject.GetComponent<Animator>();
         currentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
@@ -59,68 +61,69 @@ State = State.Idle;
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
-                State = State.Attacking;
+                state = State.Attacking;
             yield return new WaitForSeconds(1.2f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
             
         }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 playerChar.GetComponent<Animator>().Play("Dodge Left");
-                State = State.Dodging;
+                state = State.Dodging;
             yield return new WaitForSeconds(1.2f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
             
         }
             if (Input.GetKeyDown(KeyCode.Q))
             {
                
                 playerChar.GetComponent<Animator>().Play("Parry");
-                State = State.Parrying;
+                state = State.Parrying;
             yield return new WaitForSeconds(1.4f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
             
         }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 playerChar.GetComponent<Animator>().Play("Dodge Right");
-                State = State.Dodging;
+                state = State.Dodging;
             yield return new WaitForSeconds(1.2f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
             
         }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerChar.GetComponent<Animator>().Play("Block");
-                 State = State.Blocking;
+                 state = State.Blocking;
             yield return new WaitForSeconds(0.3f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
            
         }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                playerChar.GetComponent<Animator>().Play("Left Top Down");
-                State = State.Attacking;
-            yield return new WaitForSeconds(2f);
+            transform.rotation = Quaternion.Euler(new Vector3(0,-183,0));
+            playerChar.GetComponent<Animator>().Play("Spinning Attack");
+                state = State.Attacking;
+            yield return new WaitForSeconds(0.5f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
-State = State.Idle;
+state = State.Idle;
             
         }
             
