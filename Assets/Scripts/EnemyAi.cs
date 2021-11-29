@@ -18,6 +18,10 @@ public class EnemyAi : MonoBehaviour
     Vector3 startPosition;
     private Quaternion startRotation;
 
+    public float enemyHealth;
+public float enemyDamageDealt;
+public float enemyDamageTaken;
+
     private enum State
     {
         Idle,
@@ -41,6 +45,8 @@ public class EnemyAi : MonoBehaviour
         startPosition = enemy.transform.position;
         startRotation = enemy.transform.rotation;
 
+enemyDamageDealt = 20f;
+enemyHealth = 100f;
     }
 
     // Update is called once per frame
