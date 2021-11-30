@@ -22,14 +22,14 @@ public class EnemyAi : MonoBehaviour
 public float enemyDamageDealt;
 public float enemyDamageTaken;
 
-    private enum State
+    public enum State
     {
         Idle,
         Attacking,
         Vulnerable
     }
 
-    private State state;
+    public State state;
 
     private void Awake()
     {
@@ -38,9 +38,9 @@ public float enemyDamageTaken;
         timeToAction = Time.time + cooldown;
         state = State.Idle;
 
-        triggerSelector[0] = "JumpAtk";
-        triggerSelector[1] = "Punch";
-        triggerSelector[2] = "Swipe";
+        
+        triggerSelector[0] = "Punch";
+        triggerSelector[1] = "Swipe";
 
         startPosition = enemy.transform.position;
         startRotation = enemy.transform.rotation;
@@ -77,16 +77,13 @@ enemyHealth = 100f;
         animator.SetTrigger(triggerSelector[randInd]);
         if (randInd == 0)
         {
-            cooldown = 11;
+            cooldown = 4;
         }
         if (randInd == 1)
         {
-            cooldown = 4;
-        }
-        if (randInd == 2)
-        {
             cooldown = 6;
         }
+       
         yield return new WaitForSeconds(triggerSelector.Length);
         enemy.transform.position = startPosition;
         enemy.transform.rotation = startRotation;

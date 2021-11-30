@@ -6,7 +6,9 @@ public class CharacterAnimationDelegate : MonoBehaviour
 {
     public GameObject swordAttackPoint;
 
-    // Start is called before the first frame update
+    public GameObject enemyAttackLeft;
+    public GameObject enemyAttackRight;
+
     void SwordAttackPointOn()
     {
         swordAttackPoint.SetActive(true);
@@ -20,4 +22,35 @@ public class CharacterAnimationDelegate : MonoBehaviour
             swordAttackPoint.SetActive(false);
         }
     }
+
+    // enemy attack point scripts
+
+    void EnemyAttackLeftOn()
+    {
+        enemyAttackLeft.SetActive(true);
+
+    }
+
+    void EnemyAttackLeftOff()
+    {
+        if (enemyAttackLeft.activeInHierarchy)
+        {
+            enemyAttackLeft.SetActive(false);
+        }
+    }
+    void EnemyAttackRightOn()
+    {
+        enemyAttackRight.SetActive(true);
+
+    }
+
+    void EnemyAttackRightOff()
+    {
+        if (enemyAttackRight.activeInHierarchy)
+        {
+            enemyAttackRight.SetActive(false);
+        }
+    }
+    
+    // ends enemy attack point scripts
 }
