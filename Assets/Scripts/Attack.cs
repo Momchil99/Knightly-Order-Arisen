@@ -6,16 +6,29 @@ public class Attack : MonoBehaviour
 {
 public LayerMask collisionLayer;
 public float radius = 1f;
-public float damage = 10f;
+private float damage = 10;
 
 public bool is_Player, is_Enemy;
 
-public GameObject hit_FX; 
+public GameObject hit_FX;
+    public EnemyAi enemyAI;
+    public CharacterMovement characterMovement;
+
+    private void Awake()
+    {
+        enemyAI = FindObjectOfType<EnemyAi>();
+  characterMovement = FindObjectOfType<CharacterMovement>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         DetectCollision();
+        if (is_Enemy)
+        damage = enemyAI.enemyDamageDealt;
+
+        if (is_Player)
+            damage = characterMovement.myDamageDealt;
     }
 
     void DetectCollision(){

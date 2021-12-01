@@ -22,6 +22,8 @@ public class EnemyAi : MonoBehaviour
 public float enemyDamageDealt;
 public float enemyDamageTaken;
 
+    public CharacterMovement characterMovement;
+
     public enum State
     {
         Idle,
@@ -38,6 +40,7 @@ public float enemyDamageTaken;
         timeToAction = Time.time + cooldown;
         state = State.Idle;
 
+       characterMovement = FindObjectOfType<CharacterMovement>();
         
         triggerSelector[0] = "Punch";
         triggerSelector[1] = "Swipe";
@@ -52,11 +55,20 @@ enemyHealth = 100f;
     // Update is called once per frame
     void Update()
     {
+      
+  
+
+        if (characterMovement.dodgecounter >= 4)
+            state = State.Vulnerable;
 
 
         switch (state)
         {
             case State.Idle:
+                enemy.GetComponent<Animator>().Play("Roaring Idle");
+                enemyDamageTaken = 2f;
+                
+
                 if (timeToAction < Time.time)
                 {
                     state = State.Attacking;
@@ -64,11 +76,24 @@ enemyHealth = 100f;
                 break;
 
             case State.Attacking:
+                Debug.Log(state.ToString());
                 timeToAction = Time.time + cooldown;
+// detection is difficult as state only stays changed for 1 frame (rly fkn quick)
+                enemyDamageTaken = 2f;
+                
                 StartCoroutine(PlayAttackAnim());
                 state = State.Idle; 
                 break;
+
+            case State.Vulnerable:
+                StartCoroutine(playVulnerable());
+               
+                break;
+                
         }
+
+     
+            
     }
 
    IEnumerator PlayAttackAnim()
@@ -89,6 +114,15 @@ enemyHealth = 100f;
         enemy.transform.rotation = startRotation;
     }
     
-
+    IEnumerator playVulnerable()
+    {
+        Debug.Log(state.ToString());
+        enemy.GetComponent<Animator>().Play("Mutant Vulnerable");
+        enemyDamageTaken = 10f;
+        yield return new WaitForSeconds(10);
+        state = State.Idle;
+        characterMovement.dodgecounter = 0;
+       
+    }
    
 }

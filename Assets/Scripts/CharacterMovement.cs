@@ -20,6 +20,10 @@ public float myHealth;
 public float myDamageDealt;
 public float myDamageTaken;
 
+    public int dodgecounter; 
+
+    public EnemyAi enemyAi;
+
  private enum State
     {
         Idle,
@@ -31,6 +35,11 @@ public float myDamageTaken;
 
     private State state;
 
+    private void Awake()
+    {
+        enemyAi = FindObjectOfType<EnemyAi>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +48,7 @@ public float myDamageTaken;
         startRotation = playerChar.transform.rotation;
 
         myHealth = 100f;
-        myDamageDealt = 10f;
+        
 
 state = State.Idle;
         // get current animation length (for later)
@@ -53,7 +62,9 @@ state = State.Idle;
     // Update is called once per frame
     void Update()
     {
+        myDamageDealt = enemyAi.enemyDamageTaken;
         StartCoroutine(PlayAnims());
+      
     }
 
     IEnumerator PlayAnims()
@@ -127,6 +138,18 @@ state = State.Idle;
             
         }
             
+    }
+
+    void noDamage()
+    {
+        dodgecounter++ ;
+        Debug.Log(dodgecounter);
+        enemyAi.enemyDamageDealt = 0;
+    }
+
+    void normalDamage()
+    {
+        enemyAi.enemyDamageDealt = 20; 
     }
 
 }
