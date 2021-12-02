@@ -69,7 +69,7 @@ state = State.Idle;
 
     IEnumerator PlayAnims()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) )
             {
                 playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
                 state = State.Attacking;
