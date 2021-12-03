@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public float myDamageTaken;
 
     public EnemyAi enemyAi;
 
+  
  private enum State
     {
         Idle,
@@ -40,6 +42,8 @@ public float myDamageTaken;
         enemyAi = FindObjectOfType<EnemyAi>();
     }
 
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +52,8 @@ public float myDamageTaken;
         startRotation = playerChar.transform.rotation;
 
         myHealth = 100f;
-        
 
-state = State.Idle;
+        state = State.Idle;
         // get current animation length (for later)
       /*  animator = gameObject.GetComponent<Animator>();
         currentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
@@ -64,7 +67,6 @@ state = State.Idle;
     {
         myDamageDealt = enemyAi.enemyDamageTaken;
         StartCoroutine(PlayAnims());
-      
     }
 
     IEnumerator PlayAnims()
@@ -80,34 +82,12 @@ state = State.Idle;
 state = State.Idle;
             
         }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                playerChar.GetComponent<Animator>().Play("Dodge Left");
-                state = State.Dodging;
-            yield return new WaitForSeconds(1.2f);
-
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-            
-        }
             if (Input.GetKeyDown(KeyCode.Q))
             {
                
                 playerChar.GetComponent<Animator>().Play("Parry");
                 state = State.Parrying;
             yield return new WaitForSeconds(1.4f);
-
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-            
-        }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                playerChar.GetComponent<Animator>().Play("Dodge Right");
-                state = State.Dodging;
-            yield return new WaitForSeconds(1.2f);
 
             playerChar.transform.position = startPosition;
             playerChar.transform.rotation = startRotation;
@@ -140,9 +120,27 @@ state = State.Idle;
             
     }
 
+    public void DodgeLeft()
+    {
+        playerChar.GetComponent<Animator>().Play("Dodge Left");
+        state = State.Dodging;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
+    } 
+
+    public void DodgeRight()
+    {
+        playerChar.GetComponent<Animator>().Play("Dodge Right");
+        state = State.Dodging;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
+    }
+
     void noDamage()
     {
-        dodgecounter++ ;
+        dodgecounter++;
         Debug.Log(dodgecounter);
         enemyAi.enemyDamageDealt = 0;
     }
