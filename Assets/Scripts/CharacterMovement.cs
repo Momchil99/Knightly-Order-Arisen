@@ -71,17 +71,6 @@ public float myDamageTaken;
 
     IEnumerator PlayAnims()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) )
-            {
-                playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
-                state = State.Attacking;
-            yield return new WaitForSeconds(1.2f);
-
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-            
-        }
             if (Input.GetKeyDown(KeyCode.Q))
             {
                
@@ -118,6 +107,15 @@ state = State.Idle;
             
         }
             
+    }
+
+    public void RightTopDownAttack()
+    {
+        playerChar.GetComponent<Animator>().Play("Right Top Down Attack");
+        state = State.Attacking;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
     }
 
     public void DodgeLeft()

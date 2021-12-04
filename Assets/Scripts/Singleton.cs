@@ -12,7 +12,7 @@ public class Singleton<T> : MonoBehaviour
         {
             if (instance == null)
             {
-                var objs = FindObjectOfType(typeof(T)) as T[];
+                var objs = FindObjectsOfType(typeof(T)) as T[];
                 if (objs.Length > 0)
                     instance = objs[0];
                 if (objs.Length > 1)

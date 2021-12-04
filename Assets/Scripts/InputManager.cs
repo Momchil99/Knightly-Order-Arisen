@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,7 +35,7 @@ public class InputManager : Singleton<InputManager>
     void Start()
     {
         playerControls.Touch.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
-        playerControls.Touch.PrimaryContact.started += ctx => EndTouchPrimary(ctx);
+        playerControls.Touch.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
     }
 
     private void StartTouchPrimary(InputAction.CallbackContext context)

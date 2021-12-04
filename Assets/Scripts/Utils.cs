@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-    Vector3 pos = new Vector3(200, 200, 0);
+    [SerializeField] private Camera mainCamera;
 
     public static Vector3 ScreenToWorld(Camera camera, Vector3 position)
     {
-        // i think should be using camera.ScreenPointToRay
-        position.z = camera.nearClipPlane;
+        
+        Ray ray = camera.ScreenPointToRay(position);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        {
+            position = raycastHit.point;
+        }
         return camera.ScreenToWorldPoint(position);
     }
 
