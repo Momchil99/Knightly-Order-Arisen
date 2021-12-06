@@ -7,12 +7,13 @@ public class Utils : MonoBehaviour
     public static Vector3 ScreenToWorld(Camera camera, Vector3 position)
     {
         
-        Ray ray = camera.ScreenPointToRay(position);
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
             position = raycastHit.point;
+            
         }
-        return camera.ScreenToWorldPoint(position);
+       return position;
     }
 
 }

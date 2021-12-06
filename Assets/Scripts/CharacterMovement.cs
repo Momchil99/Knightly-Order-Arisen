@@ -66,47 +66,34 @@ public float myDamageTaken;
     void Update()
     {
         myDamageDealt = enemyAi.enemyDamageTaken;
-        StartCoroutine(PlayAnims());
     }
 
-    IEnumerator PlayAnims()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-               
-                playerChar.GetComponent<Animator>().Play("Parry");
-                state = State.Parrying;
-            yield return new WaitForSeconds(1.4f);
+    public void Block()
+    {
+        playerChar.GetComponent<Animator>().Play("Block");
+        state = State.Blocking;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
+    }
 
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-            
-        }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playerChar.GetComponent<Animator>().Play("Block");
-                 state = State.Blocking;
-            yield return new WaitForSeconds(0.3f);
+    public void Parry() 
+    {
+        playerChar.GetComponent<Animator>().Play("Parry");
+        state = State.Parrying;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
+    }
 
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-           
-        }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-            transform.rotation = Quaternion.Euler(new Vector3(0,-183,0));
-            playerChar.GetComponent<Animator>().Play("Spinning Attack");
-                state = State.Attacking;
-            yield return new WaitForSeconds(0.5f);
-
-            playerChar.transform.position = startPosition;
-            playerChar.transform.rotation = startRotation;
-state = State.Idle;
-            
-        }
-            
+    public void LeftSpinningAttack()
+    {
+        transform.rotation = Quaternion.Euler(new Vector3(0, -183, 0));
+        playerChar.GetComponent<Animator>().Play("Spinning Attack");
+        state = State.Attacking;
+        playerChar.transform.position = startPosition;
+        playerChar.transform.rotation = startRotation;
+        state = State.Idle;
     }
 
     public void RightTopDownAttack()

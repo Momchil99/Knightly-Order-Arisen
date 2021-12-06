@@ -72,7 +72,6 @@ public class EnemyAi : MonoBehaviour
                 break;
 
             case State.Attacking:
-                Debug.Log(state.ToString());
                 timeToAction = Time.time + cooldown;
                 enemyDamageTaken = 2f;
                 StartCoroutine(PlayAttackAnim());
