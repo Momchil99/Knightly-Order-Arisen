@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
 
     private CharacterMovement animationScript;
     private EnemyAi enemyAI;
+    private ChangeScene changeScene;
 
     private bool characterDied;
 
@@ -24,6 +25,7 @@ public class Health : MonoBehaviour
     {
         animationScript = GetComponent<CharacterMovement>();
         enemyAI = GetComponent<EnemyAi>();
+        changeScene = GetComponent<ChangeScene>();
      
     }
     public void ApplyDamage(float damage, bool takehit)
@@ -35,18 +37,8 @@ public class Health : MonoBehaviour
        
         Debug.Log(health);
 
-        if (health <= 0f)
-        {
-            // needs to be replaced by death animation
-            gameObject.SetActive(false);
-            characterDied = true;
 
-            if (isPlayer)
-            {
 
-            }
-            return;
-        }
         if (!isPlayer)
         {
             // make the enemy stagger with animation
@@ -61,6 +53,26 @@ public class Health : MonoBehaviour
 
         }
     }
+    void Update()
+    {
+        if (health <= 0f)
+        {
+            // needs to be replaced by death animation
+            gameObject.SetActive(false);
+            characterDied = true;
 
-   
+            if (isPlayer)
+            {
+                changeScene.GetCurrentScene();
+            }
+            if (!isPlayer)
+            {
+                changeScene.SwitchScene();
+            }
+            return;
+
+        }
+    }
+
+
 }
